@@ -2,7 +2,7 @@
 A second attempt at making a checklist, was too ambitous with my last
 attempt and got lost on the way. My code became confusing and I became overwhelmed by what I had done. 
 
-Project Plan:
+Project Plan: main.py --> create.py / Edit.py <-- add & remove task  functions / s_remove.py 
 
 Main Menu:
 
@@ -12,7 +12,7 @@ Main Menu:
 		- Confirm Subject [User]
 		- Cancle Subject (Return to main menu) [User]
 
-- Edit Subject (Add, Remove) 
+- Edit Subject (Add, Remove options) 
 	- List Subjects (Select by index numebr) [System]
 		- List Task Options [System]
 			- ADD [System]
