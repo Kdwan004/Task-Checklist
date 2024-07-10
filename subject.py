@@ -4,7 +4,7 @@ Write Testcases for user input and list input
 
 '''
 
-def list_subject(list):
+def list_subjects(list):
     # If the list is not empty, list all subjects in the list
     if len(list) > 0:
         for index, subjects in enumerate(list, start=1):
@@ -14,28 +14,31 @@ def list_subject(list):
     # Otherwise print null [To be changed later]
     if len(list) > 0:
        print("\n Null \n")
-    
+
+def add_subjects(list):
 
     # While loop to give user to add multiple subjects
     # Also allows user to exit function without being forced to exit the program
     while True:
-        # User enters subject
-        subject = str(input("Enter Subject: "))
+        # 1. User enters subject
+        subject = str(input("Enter Subject: ")) # User will enter a subject
         if subject.lower == "back":
             return list
         
-        # Confirmation wall
-        decision = str(input(f"Are you sure you want to add '{subject}' to the list?"))
-        if decision.lower() == "yes":
+        # 2. User Will confirm subject
+        decision = str(input(f"Are you sure you want to add '{subject}' to the list?")) 
+
+        # 3a. If user says yes, then add the subject to the list and return the new list value
+        if decision.lower() == "yes": 
             list.append(subject)
             return list
         
-        # If no, user is prompted to go and edit subject name
-        if decision.lower() == "no":
+        # 3b. If user says no, then the user is prompted back to step 1
+        elif decision.lower() == "no":
             continue
         
-        # Exit code
-        if decision.lower() == "back":
+        # 4. If user does not wish to continue, return list value
+        elif decision.lower() == "back":
             return list
 
 
