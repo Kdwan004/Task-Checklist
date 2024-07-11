@@ -1,8 +1,10 @@
 import sys
 import unittest
 from unittest.mock import patch
+from directory import direct
 
-sys.path.insert(1, '/home/bleachly/Desktop/tasks')
+direct()
+
 import subject
 
 '''
