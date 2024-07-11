@@ -47,7 +47,7 @@ def add_subject(list, task_list):
         if decision.lower() == "no" or decision.lower() == "n":
             continue
         
-        # 4. If user does not wish to continue, return list value
+        # 5. If user does not wish to continue, return list value
         if decision == "--":
             return list, task_list
 
@@ -63,16 +63,17 @@ def remove_subject(list):
     elif len(list) > 0:
 
         while True:
-            # User Enters subject
+            # 1. User Enters subject
             subject_input = input("\nEnter Subject to be REMOVED: ")
 
             # Exit function
             if subject_input == "--":
                 return list
 
-            # Convert input to int to reference list index values
+            # 2. Convert input to int to reference list index values
             subject = int(subject_input)
-            # If a valid subject was selected
+
+            # 3. If a valid subject was selected
             if subject > 0:
                 decision = str(input(f"Are you sure you want to remove '{list[subject - 1]}' from the list? ")) 
 
@@ -91,7 +92,7 @@ def remove_subject(list):
                 elif decision == "--":
                     return list
                 
-                # X. If user inputs an invalid value, return to step 1
+                # 5. If user inputs an invalid value, return to step 1
                 else:
                     print("Please enter a valid response (yes/no/--)")
                     continue
