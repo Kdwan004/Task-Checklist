@@ -1,17 +1,47 @@
 from subject import list_subjects
+from os import system
+
+
+# Main UI for managing tasks --> added to main menu
+def task_ui(subject_list, task_list):
+    while True:
+        print("EDITING TASKS\n")
+        print("1. Add Task: ")
+        print("2. Remove Task: ")
+        print("3. View Tasks: ")
+
+        back = str(input("\nEnter Option: "))
+
+        if back == "--":
+            break
+
+        else:
+            user_input = int(back)
+            if user_input == 1:
+                add_task(subject_list, task_list)
+                system('clear')
+            if user_input == 2:
+                remove_task(subject_list, task_list)
+                system('clear')
+            if user_input == 3:
+                view_all_tasks(subject_list, task_list)
+                system('clear')
+
+            
 
 # View all tasks with numeric point values
 def view_all_tasks(subject_list, task_list):
+
     for i, subjects in enumerate(subject_list, start=1):
         print(f"{i}. {subjects}")
         for j, tasks in enumerate(task_list[i-1], start=1):
-            print(f"    {j}.{tasks}")
+            print(f"    {j}.{tasks}") 
         
-        print("")
-        
+    user = str(input("\n'--' to Return: "))
         
 # View subject specific tasks with numeric point values
 def view_task(subject_list, task_list, index):
+
     print(subject_list[index-1])
     for i, tasks in enumerate(task_list[index-1], start=1):
         print(f"    {i}.{tasks}")
@@ -20,6 +50,7 @@ def view_task(subject_list, task_list, index):
 def add_task(subject_list, task_list):
     # Loop to allow user to return to subject selection and add tasks for another subject
     while True:
+        system('clear')
         list_subjects(subject_list)
         back = str(input("\nEnter Subject: "))
         if back == "--":
@@ -34,11 +65,13 @@ def add_task(subject_list, task_list):
                     return task_list
                 
                 else:
+                    print(f"'{task}' was added to the list")
                     task_list[subject_index-1].append(f"[ ]{task}")
                     continue
 
 def remove_task(subject_list, task_list):
     while True:
+        system('clear')
         list_subjects(subject_list)
         back = str(input("\nEnter Subject: "))
         if back == "--":

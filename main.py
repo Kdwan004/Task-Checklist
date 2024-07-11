@@ -1,4 +1,7 @@
 from os import system
+import subject
+import task
+
 
 def preview():
     while True:
@@ -13,30 +16,45 @@ def preview():
 
         if option.lower() == 'n' or option.lower() == 'no':
             exit()
+        
+        else:
+            system('clear')
+            print("Invalid Input\n")
 
-def main_menu():
+def main_menu(subject_list, task_list):
+
     while True:
         # Display main menu
-        print("1. \nCreate Subject")
+        print("Task Manager")
+        print("\n1. Create Subject")
         print("2. Remove Subject")
-        print("3. Edit (Add/Remove)")
+        print("3. Edit Tasks (Add/Remove)")
         print("4. Check Tasks")
         print("5. Exit\n")    
 
         # Input for main menu
-        input = int(input("Select Option: "))   
+        user_input = int(input("Select Option: "))   
 
         # Call required functions
-        if 0 < input <= 5:
-            if input == 1:
-                pass 
-            if input == 2:
-                pass 
-            if input == 3:
-                pass 
-            if input == 4:
-                pass
-            if input == 5:
+        if 0 < user_input <= 5:
+            system('clear')
+            if user_input == 1:
+                subject.add_subject(subject_list, task_list)
+                system('clear')
+                continue
+            if user_input == 2:
+                subject.remove_subject(subject_list)
+                system('clear')
+                continue
+            if user_input == 3:
+                task.task_ui(subject_list, task_list)
+                system('clear')
+                continue
+            if user_input == 4:
+                task.check_task(subject_list, task_list)
+                system('clear')
+                continue
+            if user_input == 5:
                 exit()
         
         else:
@@ -44,8 +62,18 @@ def main_menu():
             continue
 
 def main():
+    # Declare variables
+    subject_list = []
+    task_list = []
+
+    # Clear Terminal
     system("clear")
+
+    # Begin Process
     preview()
+    system('clear')
+    main_menu(subject_list, task_list)
+
 
 if __name__ == '__main__':
     main()

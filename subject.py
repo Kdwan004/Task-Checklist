@@ -10,6 +10,8 @@ USERS WILL ENTER '--' to go back.
 This prevents the user from being restricted from using the word back as an item to the list
 
 '''
+from os import system
+from time import sleep
 
 def list_subjects(list):
     # If the list is not empty, list all subjects in the list
@@ -20,55 +22,70 @@ def list_subjects(list):
         
     # Otherwise print null [To be changed later]
     if len(list) == 0:
-       print("Null")
+       print("EPMTY")
 
 def add_subject(list, task_list):
 
     # While loop to give user to add multiple subjects
     # Also allows user to exit function without being forced to exit the program
     while True:
+        system('clear')
+        print("ADD SUBJECT")
         list_subjects(list)
         # 1. User enters subject
-        subject = str(input("\nEnter Subject to be ADDED: ")) # User will enter a subject
+        subject = str(input("\nEnter Subject: ")) # User will enter a subject
+
         if subject == "--":
             return list, task_list
         
-        # 2. User Will confirm subject
-        decision = str(input(f"Are you sure you want to add '{subject.upper()}' to the list? ")) 
-
-        # 3a. If user says yes, then add the subject to the list and return the new list value
-        if decision.lower() == "yes" or decision.lower() == "y": 
-
-            # Add subject to subject list
+        else:
+            # Add subject to the list
             list.append(subject)
             # For each subject, add an empty list of tasks to task_list
             task_list.append([])
-            
-            print(f"'{subject.upper()}' was added to the list")
             continue
         
-        # 3b. If user says no, then the user is prompted back to step 1
-        if decision.lower() == "no" or decision.lower() == "n":
-            continue
-        
-        # 5. If user does not wish to continue, return list value
-        if decision == "--":
-            return list, task_list
+        # # 2. User Will confirm subject
+        # decision = str(input(f"Are you sure you want to add '{subject.upper()}' to the list? ")) 
+
+        # # 3a. If user says yes, then add the subject to the list and return the new list value
+        # if decision.lower() == "yes" or decision.lower() == "y": 
+
+        #     # Add subject to subject list
+        #     list.append(subject)
+        #     # For each subject, add an empty list of tasks to task_list
+        #     task_list.append([])
+        #     
+        #     print(f"'{subject.upper()}' was added to the list")
+        #     continue
+        # 
+        # # 3b. If user says no, then the user is prompted back to step 1
+        # if decision.lower() == "no" or decision.lower() == "n":
+        #     continue
+        # 
+        # # 5. If user does not wish to continue, return list value
+        # if decision == "--":
+        #     return list, task_list
 
 
 def remove_subject(list):
-    list_subjects(list)
     # If there are no subjects in the list, then inform the user and return the function
     if len(list) == 0:
-        print("\nNo subjects in the list")
+        print("\nERROR: No subjects in the list\n")
+        print("Returning to main menu...")
+        sleep(1.5)
+        system('clear')
         return list
     
     # Otherwise, continue with removal process
     elif len(list) > 0:
 
         while True:
+            system('clear')
+            print("REMOVE SUBJECT")
+            list_subjects(list)
             # 1. User Enters subject
-            subject_input = input("\nEnter Subject to be REMOVED: ")
+            subject_input = input("\nEnter Subject: ")
 
             # Exit function
             if subject_input == "--":
