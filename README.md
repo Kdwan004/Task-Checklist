@@ -4,6 +4,7 @@ attempt and got lost on the way. My code became confusing and I became overwhelm
 
 Project Plan: main.py <-- subject.py <-- tasks.py
 
+
 Main Menu:
 
 - Create Subject [DONE]
@@ -12,7 +13,7 @@ Main Menu:
 		- Confirm Subject [User]
 		- Cancle Subject (Return to main menu) [User]
 
-- Edit Subject (Add, Remove options) 
+- Edit Subject (Add, Remove options) [DONE]
 	- List Subjects (Select by index numebr) [System]
 		- List Task Options [System]
 			- ADD [System]
@@ -37,11 +38,13 @@ Main Menu:
 		- Confirm Selected Subject 'Are you sure you want to remove 'Subject'' [User]
 		- Cancle (Return to main menu) [User]
 
-- Check/Uncheck Task
+- Check/Uncheck Task [DONE]
 	- List Subject/Tasks Name/Index [System]
 		- Select Subject & Task Index [Toggle Checkmark] [User]
 		- Display updated list with checked task [System]
 		- Return to main menu [System]
  
-- Exit
+- Exit [DONE]
 	- Exit Program [User]
+
+FILE i/o FUNCTIONS [NOT DONE]

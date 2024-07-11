@@ -38,8 +38,12 @@ def add_subject(list, task_list):
 
         # 3a. If user says yes, then add the subject to the list and return the new list value
         if decision.lower() == "yes" or decision.lower() == "y": 
+
+            # Add subject to subject list
             list.append(subject)
+            # For each subject, add an empty list of tasks to task_list
             task_list.append([])
+            
             print(f"'{subject.upper()}' was added to the list")
             continue
         
