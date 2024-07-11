@@ -1,5 +1,18 @@
+from os import system
+
 def preview():
-    pass
+    while True:
+        print("This software is a simple terminal task manager")
+        print("You will be prompted with a list of different options")
+        print("To select an option, enter the number next to the option you wish to select")
+        print("If you wish to backtrack, enter '--'")
+
+        option = str(input("\nDo you wish to proceed(yes/no)? "))
+        if option.lower() == 'y' or option.lower() == 'yes':
+            break
+
+        if option.lower() == 'n' or option.lower() == 'no':
+            exit()
 
 def main_menu():
     while True:
@@ -7,8 +20,8 @@ def main_menu():
         print("1. \nCreate Subject")
         print("2. Remove Subject")
         print("3. Edit (Add/Remove)")
-        print("4. Check Tasks\n")
-        print("5. Exit")    
+        print("4. Check Tasks")
+        print("5. Exit\n")    
 
         # Input for main menu
         input = int(input("Select Option: "))   
@@ -31,8 +44,8 @@ def main_menu():
             continue
 
 def main():
+    system("clear")
     preview()
-
 
 if __name__ == '__main__':
     main()
