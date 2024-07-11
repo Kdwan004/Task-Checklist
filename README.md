@@ -2,13 +2,13 @@
 A second attempt at making a checklist, was too ambitous with my last
 attempt and got lost on the way. My code became confusing and I became overwhelmed by what I had done. 
 
-Project Plan: main.py --> create.py / Edit.py <-- add & remove task  functions / s_remove.py 
+Project Plan: main.py <-- subject.py <-- tasks.py
 
 Main Menu:
 
-- Create Subject
-	- List Subjects [System]
-	- Input Subject Name [User]
+- Create Subject [DONE]
+	- List Subjects [System] 
+	- Input Subject Name [User] 
 		- Confirm Subject [User]
 		- Cancle Subject (Return to main menu) [User]
 
@@ -32,7 +32,7 @@ Main Menu:
 			
 				- Back (Return to main menu) [User]
 			
-- Remove Subject
+- Remove Subject [DONE]
 	- List Subjects (Select by index number) [System]
 		- Confirm Selected Subject 'Are you sure you want to remove 'Subject'' [User]
 		- Cancle (Return to main menu) [User]
