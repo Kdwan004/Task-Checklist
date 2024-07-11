@@ -17,46 +17,46 @@ def list_subjects(list):
     if len(list) > 0:
         for index, subjects in enumerate(list, start=1):
             print(f"{index}. {subjects}")
-
-    print("")
         
     # Otherwise print null [To be changed later]
     if len(list) == 0:
-       print("\n Null \n")
+       print("Null")
 
-def add_subject(list):
+def add_subject(list, task_list):
 
     # While loop to give user to add multiple subjects
     # Also allows user to exit function without being forced to exit the program
     while True:
+        list_subjects(list)
         # 1. User enters subject
-        subject = str(input("Enter Subject: ")) # User will enter a subject
+        subject = str(input("\nEnter Subject to be ADDED: ")) # User will enter a subject
         if subject == "--":
-            return list
+            return list, task_list
         
         # 2. User Will confirm subject
-        decision = str(input(f"Are you sure you want to add '{subject}' to the list? ")) 
+        decision = str(input(f"Are you sure you want to add '{subject.upper()}' to the list? ")) 
 
         # 3a. If user says yes, then add the subject to the list and return the new list value
-        if decision.lower() == "yes" or decision.lower == "y": 
+        if decision.lower() == "yes" or decision.lower() == "y": 
             list.append(subject)
-            print("")
-            print(f"{subject} was added to the list")
-            return list
+            task_list.append([])
+            print(f"'{subject.upper()}' was added to the list")
+            continue
         
         # 3b. If user says no, then the user is prompted back to step 1
-        elif decision.lower() == "no" or decision.lower() == "n":
+        if decision.lower() == "no" or decision.lower() == "n":
             continue
         
         # 4. If user does not wish to continue, return list value
-        elif decision == "--":
-            return list
+        if decision == "--":
+            return list, task_list
 
 
 def remove_subject(list):
+    list_subjects(list)
     # If there are no subjects in the list, then inform the user and return the function
     if len(list) == 0:
-        print("\nNo subjects to be removed")
+        print("\nNo subjects in the list")
         return list
     
     # Otherwise, continue with removal process
@@ -64,7 +64,7 @@ def remove_subject(list):
 
         while True:
             # User Enters subject
-            subject_input = input("Enter Subject: ")
+            subject_input = input("\nEnter Subject to be REMOVED: ")
 
             # Exit function
             if subject_input == "--":
@@ -72,15 +72,16 @@ def remove_subject(list):
 
             # Convert input to int to reference list index values
             subject = int(subject_input)
+            # If a valid subject was selected
             if subject > 0:
                 decision = str(input(f"Are you sure you want to remove '{list[subject - 1]}' from the list? ")) 
 
                 # 3a. If user says yes, then add the subject to the list and return the new list value
                 if decision.lower() == "yes" or decision.lower == "y": 
                     popped = list.pop(subject - 1)
-                    print("")
-                    print(f"{popped} was removed from the list")
-                    return list
+                    list_subjects(list)
+                    print(f"\n{popped} was removed from the list")
+                    continue
 
                 # 3b. If user says no, then the user is prompted back to step 1
                 elif decision.lower() == "no" or decision.lower() == "n":
@@ -94,14 +95,30 @@ def remove_subject(list):
                 else:
                     print("Please enter a valid response (yes/no/--)")
                     continue
+            
+            else:
+                print("Please enter a valid index")
+                continue
 
                 
 
 
 
 # For testing
-list = ['a', 'b', 'c']
 
-list_subjects(list)
-remove_subject(list)
+
+# task_list = [['Q1'], ['Q2'], ['Q3']]
+#task_list = []
+#list = []
+# list1 = ['a', 'b', 'c']
+# list_subjects(list)
+# list_subjects(list1)
+# 
+#add_subject(list, task_list)
+# add_subject(list1)
+# 
+# remove_subject(list)
+# remove_subject(list1)
+
+
 
