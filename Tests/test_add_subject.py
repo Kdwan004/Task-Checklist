@@ -48,6 +48,35 @@ class TestAddSubject(unittest.TestCase):
             updated_subject_list, updated_task_list = add_subject(subject_list, task_list)
             self.assertEqual(updated_subject_list, [])
             self.assertEqual(updated_task_list, [])
+    def test_add_subject_empty_input(self):
+        # Test case for empty subject input
+        subject_list = []
+        task_list = []
+        input_values = ['', '--']
+        with patch('builtins.input', side_effect=input_values):
+            updated_subject_list, updated_task_list = add_subject(subject_list, task_list)
+            self.assertEqual(updated_subject_list, [''])
+            self.assertEqual(updated_task_list, [[]])
+
+    def test_add_subject_special_characters(self):
+        # Test case for special characters in subject input
+        subject_list = []
+        task_list = []
+        input_values = ['@!#$', '--']
+        with patch('builtins.input', side_effect=input_values):
+            updated_subject_list, updated_task_list = add_subject(subject_list, task_list)
+            self.assertEqual(updated_subject_list, ['@!#$'])
+            self.assertEqual(updated_task_list, [[]])
+
+    def test_add_subject_numeric_input(self):
+        # Test case for numeric subject input
+        subject_list = []
+        task_list = []
+        input_values = ['1234', '--']
+        with patch('builtins.input', side_effect=input_values):
+            updated_subject_list, updated_task_list = add_subject(subject_list, task_list)
+            self.assertEqual(updated_subject_list, ['1234'])
+            self.assertEqual(updated_task_list, [[]])
 
 if __name__ == '__main__':
     unittest.main()

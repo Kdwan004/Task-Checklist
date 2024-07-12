@@ -98,5 +98,41 @@ class TestViewTask(unittest.TestCase):
         view_task(subject_list, task_list, index)
         self.assertEqual(self.held_stdout.getvalue(), expected_output)
 
+    def test_view_task_index_out_of_bounds_high(self):
+        # Test case for index out of bounds (high)
+        subject_list = ["Math", "Science", "English"]
+        task_list = [
+            ["Homework 1", "Homework 2"],
+            ["Lab Report", "Project"],
+            ["Essay", "Reading"]
+        ]
+        index = 4
+        with self.assertRaises(IndexError):
+            view_task(subject_list, task_list, index)
+
+    def test_view_task_index_out_of_bounds_low(self):
+        # Test case for index out of bounds (low)
+        subject_list = ["Math", "Science", "English"]
+        task_list = [
+            ["Homework 1", "Homework 2"],
+            ["Lab Report", "Project"],
+            ["Essay", "Reading"]
+        ]
+        index = 0
+        with self.assertRaises(IndexError):
+            view_task(subject_list, task_list, index)
+
+    def test_view_task_non_numeric_index(self):
+        # Test case for non-numeric index
+        subject_list = ["Math", "Science", "English"]
+        task_list = [
+            ["Homework 1", "Homework 2"],
+            ["Lab Report", "Project"],
+            ["Essay", "Reading"]
+        ]
+        index = 'a'
+        with self.assertRaises(TypeError):
+            view_task(subject_list, task_list, index)
+
 if __name__ == '__main__':
     unittest.main()

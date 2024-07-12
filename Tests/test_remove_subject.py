@@ -52,6 +52,42 @@ class TestRemoveSubject(unittest.TestCase):
             updated_subject_list = remove_subject(subject_list)
             self.assertEqual(updated_subject_list, [])
             self.assertIn("ERROR: No subjects in the list", self.held_stdout.getvalue())
+    
+    def test_remove_subject_empty_input(self):
+        # Test case for empty input
+        subject_list = ["Math", "Science", "English"]
+        input_values = ['', '--']
+        with patch('builtins.input', side_effect=input_values):
+            updated_subject_list = remove_subject(subject_list)
+            self.assertEqual(updated_subject_list, ["Math", "Science", "English"])
+            self.assertIn("ERROR: Index out of range", self.held_stdout.getvalue())
+
+    def test_remove_subject_non_numeric_input(self):
+        # Test case for non-numeric input
+        subject_list = ["Math", "Science", "English"]
+        input_values = ['abc', '--']
+        with patch('builtins.input', side_effect=input_values):
+            updated_subject_list = remove_subject(subject_list)
+            self.assertEqual(updated_subject_list, ["Math", "Science", "English"])
+            self.assertIn("ERROR: Index out of range", self.held_stdout.getvalue())
+
+    def test_remove_subject_out_of_bounds_high(self):
+        # Test case for index out of bounds (high)
+        subject_list = ["Math", "Science", "English"]
+        input_values = ['10', '--']
+        with patch('builtins.input', side_effect=input_values):
+            updated_subject_list = remove_subject(subject_list)
+            self.assertEqual(updated_subject_list, ["Math", "Science", "English"])
+            self.assertIn("ERROR: Index out of range", self.held_stdout.getvalue())
+
+    def test_remove_subject_out_of_bounds_low(self):
+        # Test case for index out of bounds (low)
+        subject_list = ["Math", "Science", "English"]
+        input_values = ['-1', '--']
+        with patch('builtins.input', side_effect=input_values):
+            updated_subject_list = remove_subject(subject_list)
+            self.assertEqual(updated_subject_list, ["Math", "Science", "English"])
+            self.assertIn("ERROR: Index out of range", self.held_stdout.getvalue())
 
 if __name__ == '__main__':
     unittest.main()
