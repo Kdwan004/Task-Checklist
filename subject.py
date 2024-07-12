@@ -38,6 +38,10 @@ def add_subject(list, task_list):
         if subject == "--":
             return list, task_list
         
+        if subject == "" or subject == " ":
+            print("\nERROR: Invalid Input")
+            input("Press ENTER to continue...")
+
         else:
             # Add subject to the list
             list.append(subject)
@@ -45,6 +49,8 @@ def add_subject(list, task_list):
             task_list.append([])
             continue
         
+        # BELOW IS IF USER WANTS CONFIRMATION BEFORE CREATING A SUBJECT
+
         # # 2. User Will confirm subject
         # decision = str(input(f"Are you sure you want to add '{subject.upper()}' to the list? ")) 
 
@@ -71,10 +77,9 @@ def add_subject(list, task_list):
 def remove_subject(list):
     # If there are no subjects in the list, then inform the user and return the function
     if len(list) == 0:
-        print("\nERROR: No subjects in the list\n")
-        print("Returning to main menu...")
-        sleep(1.5)
-        system('clear')
+        print("REMOVE SUBJECT")
+        print("\nERROR: Subject list is EMPTY")
+        input("Press ENTER to return to menu...")
         return list
     
     # Otherwise, continue with removal process
@@ -86,14 +91,20 @@ def remove_subject(list):
             list_subjects(list)
             # 1. User Enters subject
 
-            subject_input = input("\nEnter Subject: ")
+            select_subject = input("\nEnter Subject: ")
 
             # Exit function
-            if subject_input == "--":
+            if select_subject == "--":
                 return list
 
             # 2. Convert input to int to reference list index values
-            subject = int(subject_input)
+            # Check subject if it is a digit
+            if select_subject.isdigit():
+                subject = int(select_subject)
+            else:
+                print("\nERROR: Invalid Input")
+                input("Press ENTER to continue... ")
+                continue
 
             # 3. If a valid subject was selected
             if 0 < subject <= len(list):
@@ -117,7 +128,7 @@ def remove_subject(list):
                     
                     # 5. If user inputs an invalid value, return to step 1
                     else:
-                        print("Please enter a valid response (yes/no/--)")
+                        print("\nPlease enter a valid response (yes/no/--)")
                         continue
                     
             else:

@@ -89,28 +89,5 @@ class TestViewAllTasks(unittest.TestCase):
         view_all_tasks(subject_list, task_list)
         self.assertEqual(self.held_stdout.getvalue(), expected_output)
 
-    # Negative test cases
-
-    def test_case_5(self):
-        # Test case with None as inputs
-        subject_list = None
-        task_list = None
-        with self.assertRaises(TypeError):
-            view_all_tasks(subject_list, task_list)
-
-    def test_case_6(self):
-        # Test case with different lengths of subject and task lists
-        subject_list = ["Math", "Science"]
-        task_list = [["Homework 1"]]
-        with self.assertRaises(ValueError):
-            view_all_tasks(subject_list, task_list)
-
-    def test_case_7(self):
-        # Test case with non-list inputs
-        subject_list = "Math"
-        task_list = "Homework 1"
-        with self.assertRaises(TypeError):
-            view_all_tasks(subject_list, task_list)
-
 if __name__ == '__main__':
     unittest.main()

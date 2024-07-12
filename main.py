@@ -5,6 +5,8 @@ import task
 
 def preview():
     while True:
+        system('clear')
+        print("TERMINAL TASK-CHECKLIST v 1.0.\n")
         print("This software is a simple terminal task manager")
         print("You will be prompted with a list of different options")
         print("To select an option, enter the number next to the option you wish to select")
@@ -18,15 +20,16 @@ def preview():
             exit()
         
         else:
-            system('clear')
-            print("ERROR: Invalid Input\n")
+            print("\nERROR: Invalid Input")
+            input("Press ENTER to continue...")
+            continue
 
 def main_menu(subject_list, task_list):
 
     while True:
         # Display main menu
-        print("Task Manager")
-        print("\n1. Create Subject")
+        print("TERMINAL TASK-CHECKLIST v 1.0.\n")
+        print("1. Create Subject")
         print("2. Remove Subject")
         print("3. Edit Tasks (Add/Remove)")
         print("4. Check Tasks")
@@ -70,9 +73,6 @@ def main():
     # Declare variables
     subject_list = []
     task_list = []
-
-    # Clear Terminal
-    system("clear")
 
     # Begin Process
     preview()
