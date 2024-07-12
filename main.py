@@ -18,6 +18,7 @@ def preview():
             exit()
         
         else:
+            system('clear')
             print("ERROR: Invalid Input\n")
 
 def main_menu(subject_list, task_list):

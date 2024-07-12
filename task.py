@@ -39,7 +39,6 @@ def view_all_tasks(subject_list, task_list):
             for j, task in enumerate(task_list[i-1], start=1):
                 print(f"    {j}. {task}")
         else:
-            print("")
             print("    EMPTY")
 
         
@@ -48,7 +47,7 @@ def view_task(subject_list, task_list, index):
 
     print(subject_list[index-1])
     for i, tasks in enumerate(task_list[index-1], start=1):
-        print(f"    {i}.{tasks}")
+        print(f"    {i}. {tasks}")
     
 
 def add_task(subject_list, task_list):
@@ -77,7 +76,7 @@ def add_task(subject_list, task_list):
                         continue
                     if task == "--":
                         return task_list
-
+ 
                     else:
                         task_list[subject_index-1].append(f"[ ]{task}")
                         view_task(subject_list, task_list, subject_index-1)
@@ -161,18 +160,18 @@ def check_task(subject_list, task_list):
 
 # Test case
 
-subject_list = ['Maths', 'English', 'Biology']
-task_list = [[],[],['[] Test']]
+#subject_list = ['History']
+# task_list = [[],[],['Test']]
 
-# task_list = [[''],['','',''],['', '']]
+#task_list = [['Term Paper']]
 
 
 # add_task(subject_list, task_list)
 # add_task(subject_list, task_list)
-view_all_tasks(subject_list, task_list)
+# view_all_tasks(subject_list, task_list)
 
 # add_task(subject_list, task_list)
 # remove_task(subject_list, task_list)
 # view_all_tasks(subject_list, task_list)
-# view_task(subject_list, task_list, 3)
+#view_task(subject_list, task_list, 1)
 
