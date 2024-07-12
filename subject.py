@@ -85,6 +85,7 @@ def remove_subject(list):
             print("REMOVE SUBJECT")
             list_subjects(list)
             # 1. User Enters subject
+
             subject_input = input("\nEnter Subject: ")
 
             # Exit function
@@ -95,31 +96,32 @@ def remove_subject(list):
             subject = int(subject_input)
 
             # 3. If a valid subject was selected
-            if subject > 0:
-                decision = str(input(f"Are you sure you want to remove '{list[subject - 1]}' from the list? ")) 
-
-                # 3a. If user says yes, then add the subject to the list and return the new list value
-                if decision.lower() == "yes" or decision.lower == "y": 
-                    popped = list.pop(subject - 1)
-                    list_subjects(list)
-                    print(f"\n{popped} was removed from the list")
-                    continue
-
-                # 3b. If user says no, then the user is prompted back to step 1
-                elif decision.lower() == "no" or decision.lower() == "n":
-                    continue
-                 
-                # 4. If user does not wish to continue, return list value
-                elif decision == "--":
-                    return list
-                
-                # 5. If user inputs an invalid value, return to step 1
-                else:
-                    print("Please enter a valid response (yes/no/--)")
-                    continue
-            
+            if 0 < subject <= len(list):
+                while True:
+                    decision = str(input(f"Are you sure you want to remove '{list[subject - 1]}' from the list? ")) 
+    
+                    # 3a. If user says yes, then add the subject to the list and return the new list value
+                    if decision.lower() == "yes" or decision.lower == "y": 
+                        popped = list.pop(subject - 1)
+                        list_subjects(list)
+                        print(f"\n{popped} was removed from the list")
+                        break
+                    
+                    # 3b. If user says no, then the user is prompted back to step 1
+                    elif decision.lower() == "no" or decision.lower() == "n":
+                        break
+                    
+                    # 4. If user does not wish to continue, return list value
+                    elif decision == "--":
+                        return list
+                    
+                    # 5. If user inputs an invalid value, return to step 1
+                    else:
+                        print("Please enter a valid response (yes/no/--)")
+                        continue
+                    
             else:
-                print("Please enter a valid index")
+                print("ERROR: Index out of range")
                 continue
 
                 

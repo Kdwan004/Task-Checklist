@@ -18,8 +18,7 @@ def preview():
             exit()
         
         else:
-            system('clear')
-            print("Invalid Input\n")
+            print("ERROR: Invalid Input\n")
 
 def main_menu(subject_list, task_list):
 
@@ -33,8 +32,13 @@ def main_menu(subject_list, task_list):
         print("5. Exit\n")    
 
         # Input for main menu
-        user_input = int(input("Select Option: "))   
-
+        while True:    
+            try:
+                user_input = int(input("Select Option: "))
+                break 
+            except ValueError:
+                print("\nERROR: Invalid Value\n")
+                continue
         # Call required functions
         if 0 < user_input <= 5:
             system('clear')
