@@ -50,14 +50,6 @@ def view_all_tasks(subject_list, task_list):
         else:
             print("    EMPTY")
 
-        
-# View subject specific tasks with numeric point values
-# def view_task(subject_list, task_list, index):
-# 
-#     print(subject_list[index-1])
-#     for i, tasks in enumerate(task_list[index-1], start=1):
-#         print(f"    {i}. {tasks}")
-    
 
 def add_task(subject_list, task_list):
     # Loop to allow user to return to subject selection and add tasks for another subject
@@ -239,75 +231,6 @@ def check_task(subject_list, task_list):
             else:
                 print("ERROR: Index out of range")
 
-
-    # # Chekc if list is empty
-# 
-    # count = 0
-# 
-    # if len(subject_list) == 0:
-    #     print("CHECK TASK")
-    #     print("\nERROR: Subject list is EMPTY")
-    #     input("Press ENTER to return to menu...")
-    #     return None
-    # 
-    # # Input loop
-    # while True:
-    #     system('clear')
-    #     print("CHECK TASK\n")
-    #     view_all_tasks(subject_list, task_list)
-    #     subject_select = str(input("Enter Subject: "))
-    #     if subject_select == '--':
-    #         return None
-    #     
-    #     else:
-    #         # Loop to allow user to select multiple tasks to check
-    #         while True:
-    #             system('clear')
-    #             print("CHECK TASK\n")
-    #             view_all_tasks(subject_list, task_list)
-    #             
-    #             # Conver back value to subject for subject index
-    #             # List all tasks for the selected subject
-# 
-    #             if subject_select.isdigit(): # Subject Digit Check
-    #                 subject = int(subject_select)
-    #                 user_input = str(input("\nEnter Task: "))
-    #                 if user_input == '--':
-    #                     return task_list
-# 
-    #                 else: # Task Digit Check
-    #                     if user_input.isdigit():
-    #                         task = int(user_input)
-    #                         print(f"\nSelected: '{subject_list[task-1]}'")
-    #                         # Convert task string into array of characters
-    #                         char_split = list(task_list[subject-1][task-1])
-# 
-    #                         # Check if task has already been checked
-    #                         if char_split[1] == 'x':
-    #                             char_split[1] = ' '
-    #                             modified_task = "".join(char_split)
-    #                             task_list[subject-1][task-1] = modified_task
-    #                             continue
-# 
-    #                         if char_split[1] == ' ':
-    #                             char_split[1] = 'x'
-    #                             modified_task = "".join(char_split)
-    #                             task_list[subject-1][task-1] = modified_task
-    #                             continue
-    #                     else: # Task Digit Check
-    #                         print("ERROR: Invalid Input")
-    #                         input("Press ENTER to continue...")
-    #             else: # Subject Digit Check
-    #                 print("ERROR: Invalid Input")
-    #                 input("Press ENTER to continue...")
-    #                 continue
-    #                     
-    #             
-# 
-# 
-# 
-# Te# st case
-
 subject_list = ['History']
 task_list = [['[ ]Hwk 1', '[ ]Hwk 2', '[ ]Hwk 3']]
 
@@ -322,5 +245,5 @@ task_list = [['[ ]Hwk 1', '[ ]Hwk 2', '[ ]Hwk 3']]
 # remove_task(subject_list, task_list)
 # view_all_tasks(subject_list, task_list)
 # view_task(subject_list, task_list, 1)
-check_task(subject_list, task_list)
+# check_task(subject_list, task_list)
 
