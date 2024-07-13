@@ -11,6 +11,7 @@ This prevents the user from being restricted from using the word back as an item
 
 '''
 from os import system
+from i_o import write_subject, write_task
 
 def list_subjects(list):
     # If the list is not empty, list all subjects in the list
@@ -35,7 +36,7 @@ def add_subject(list, task_list):
         subject = str(input("\nEnter Subject: ")) # User will enter a subject
 
         if subject == "--":
-            return list, task_list
+            return list
         
         if subject == "" or subject == " ":
             print("\nERROR: Invalid Input")
@@ -44,11 +45,11 @@ def add_subject(list, task_list):
         else:
             # Add subject to the list
             list.append(subject)
+            write_subject(list, task_list)
             # For each subject, add an empty list of tasks to task_list
-            task_list.append([])
             continue
 
-def remove_subject(list):
+def remove_subject(list, task_list):
     # If there are no subjects in the list, then inform the user and return the function
     if len(list) == 0:
         print("REMOVE SUBJECT")
@@ -90,15 +91,16 @@ def remove_subject(list):
                         popped = list.pop(subject - 1)
                         list_subjects(list)
                         print(f"\n{popped} was removed from the list")
+                        write_subject(list, task_list)
                         break
                     
                     # 3b. If user says no, then the user is prompted back to step 1
                     elif decision.lower() == "no" or decision.lower() == "n":
                         break
                     
-                    # 4. If user does not wish to continue, return list value
+                    # 4. If user does not wish to continue exit loop
                     elif decision == "--":
-                        return list
+                        break
                     
                     # 5. If user inputs an invalid value, return to step 1
                     else:

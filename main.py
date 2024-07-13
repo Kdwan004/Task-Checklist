@@ -1,6 +1,7 @@
 from os import system
 import subject
 import task
+from i_o import read_subject, read_task
 
 
 def preview():
@@ -51,7 +52,7 @@ def main_menu(subject_list, task_list):
                 system('clear')
                 continue
             if user_input == 2:
-                subject.remove_subject(subject_list)
+                subject.remove_subject(subject_list, task_list)
                 system('clear')
                 continue
             if user_input == 3:
@@ -71,8 +72,8 @@ def main_menu(subject_list, task_list):
 
 def main():
     # Declare variables
-    subject_list = []
-    task_list = []
+    subject_list = read_subject()
+    task_list = read_task()
 
     # Begin Process
     preview()

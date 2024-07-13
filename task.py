@@ -1,6 +1,7 @@
 from subject import list_subjects
 from os import system
 from time import sleep
+from i_o import write_task
 
 
 # Main UI for managing tasks --> added to main menu
@@ -29,7 +30,7 @@ def task_ui(subject_list, task_list):
                     remove_task(subject_list, task_list)
                     system('clear')
                 if user_input == 3:
-                    print("VIEWING TASKS")
+                    print("VIEWING TASKS\n")
                     view_all_tasks(subject_list, task_list)
                     input("\nPress ENTER to return to menu...")
                     system('clear')
@@ -70,6 +71,7 @@ def add_task(subject_list, task_list):
         if count == 0:
             select_subject = str(input("\nEnter Subject: "))
             if select_subject == "--":
+                write_task(task_list)
                 return task_list
 
             # Check if subject is a digit
@@ -103,15 +105,14 @@ def add_task(subject_list, task_list):
                     
                     else:
                         task_list[subject_index-1].append(f"[ ]{task}")
+                        write_task(task_list)
                         break
             else:
                 print("ERROR: Index out of range")
 # Adjust remove_task function to be similar to add_task
 def remove_task(subject_list, task_list):
-
     count = 0
 
-    # List index out of range error to be fixed
     # Check if subject list is empty
     if len(subject_list) == 0:
         print("REMOVE TASK")
@@ -123,18 +124,23 @@ def remove_task(subject_list, task_list):
         system('clear')
         print("REMOVE TASK\n")
         view_all_tasks(subject_list, task_list)
+        
+        # Initial selection of subject
         if count == 0:
             select_subject = str(input("\nEnter Subject: "))
+            
             if select_subject == "--":
                 return task_list
         
             # Check if subject is a digit
             if select_subject.isdigit():
                 subject_index = int(select_subject)
+                
+                # Check if subject_index is within range
                 if 0 < subject_index <= len(subject_list): 
                     count = 1
                 else:
-                    print("ERROR: Index out of range")
+                    print("\nERROR: Index out of range")
                     input("Press ENTER to continue...")
                     continue
 
@@ -142,12 +148,16 @@ def remove_task(subject_list, task_list):
                 print("\nERROR: Invalid Input")
                 input("Press ENTER to continue...")
                 continue
+        
+        # After subject selection, allow task removal
         else:
             # If selected subject index is in the list of subjects
             if 0 < subject_index <= len(subject_list):
                 print(f"\nSelected: '{subject_list[subject_index-1]}'")
+                
                 while True:
                     task_input = str(input("Enter Task: "))
+                    
                     if task_input == "--":
                         count = 0
                         break
@@ -155,23 +165,36 @@ def remove_task(subject_list, task_list):
                     else:
                         if task_input.isdigit():
                             task = int(task_input)
-                            task_list[subject_index-1].pop(task-1)
-                            break
+                            
+                            # Check if task list for the selected subject is not empty
+                            if len(task_list[subject_index-1]) > 0:
+                                
+                                # Check if task index is within range
+                                if 0 < task <= len(task_list[subject_index-1]): 
+                                    task_list[subject_index-1].pop(task-1)
+                                    write_task(task_list)
+                                    break
+                                    
+                                else:
+                                    print("\nERROR: Index out of range")
+                                    input("Press ENTER to continue...")
+                                    break 
+                            else:
+                                print("\nERROR: Empty List")
+                                input("Press ENTER to continue...")
+                                break
+                                
                         else:
-                            print("ERROR: Invalid Input")
+                            print("\nERROR: Invalid Input")
                             input("Press ENTER to continue...")
                             break
                         
             else:
-                print("ERROR: Index out of range")
-
-
+                print("\nERROR: Index out of range")
 # Complete error handling for check function
 def check_task(subject_list, task_list):
-
     count = 0
 
-    # List index out of range error to be fixed
     # Check if subject list is empty
     if len(subject_list) == 0:
         print("CHECK TASK")
@@ -183,15 +206,19 @@ def check_task(subject_list, task_list):
         system('clear')
         print("CHECK TASK\n")
         view_all_tasks(subject_list, task_list)
+        
         if count == 0:
             select_subject = str(input("\nEnter Subject: "))
+            
             if select_subject == "--":
                 return task_list
         
             # Check if subject is a digit
             if select_subject.isdigit():
-                subject = int(select_subject)
-                if 0 < subject <= len(subject_list): 
+                subject_index = int(select_subject)
+                
+                # Check if subject_index is within range
+                if 0 < subject_index <= len(subject_list): 
                     count = 1
                 else:
                     print("\nERROR: Index out of range")
@@ -202,37 +229,52 @@ def check_task(subject_list, task_list):
                 print("\nERROR: Invalid Input")
                 input("Press ENTER to continue...")
                 continue
+        
         else:
             # If selected subject index is in the list of subjects
-            if 0 < subject <= len(subject_list):
-                print(f"\nSelected: '{subject_list[subject-1]}'")
+            if 0 < subject_index <= len(subject_list):
+                print(f"\nSelected: '{subject_list[subject_index-1]}'")
+                
                 while True:
                     task_input = str(input("Enter Task: "))
+                    
                     if task_input == "--":
                         count = 0
                         break
 
                     else:
                         if task_input.isdigit():
-                            task = int(task_input)
-                            char_split = list(task_list[subject-1][task-1])
-                            # Check if task has already been checked
-                            if char_split[1] == 'x':
-                                char_split[1] = ' '
+                            task_index = int(task_input)
+                            
+                            # Check if task_index is within range
+                            if 0 < task_index <= len(task_list[subject_index-1]):
+                                char_split = list(task_list[subject_index-1][task_index-1])
+                                
+                                # Toggle task completion status
+                                if char_split[1] == 'x':
+                                    char_split[1] = ' '
+                                elif char_split[1] == ' ':
+                                    char_split[1] = 'x'
+                                
                                 modified_task = "".join(char_split)
-                                task_list[subject-1][task-1] = modified_task
-                                break                        
-                            if char_split[1] == ' ':
-                                char_split[1] = 'x'
-                                modified_task = "".join(char_split)
-                                task_list[subject-1][task-1] = modified_task
+                                task_list[subject_index-1][task_index-1] = modified_task
+                                write_task(task_list)
                                 break
+                            else:
+                                print("\nERROR: Index out of range")
+                                input("Press ENTER to continue...")
+                                break
+                        else:
+                            print("\nERROR: Invalid Input")
+                            input("Press ENTER to continue...")
+                            break
                         
             else:
-                print("ERROR: Index out of range")
+                print("\nERROR: Index out of range")
+                input("Press ENTER to continue...")
 
-subject_list = ['History']
-task_list = [['[ ]Hwk 1', '[ ]Hwk 2', '[ ]Hwk 3']]
+# subject_list = ['History']
+# task_list = [['[ ]Hwk 1', '[ ]Hwk 2', '[ ]Hwk 3']]
 
 #task_list = [['Term Paper']]
 
