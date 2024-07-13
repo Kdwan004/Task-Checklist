@@ -1,6 +1,6 @@
 # Task-Checklist
 
-This is a terminal-based checklist application designed to help users organize their tasks and subjects efficiently. This is a second attempt at making a checklist application after realizing the initial version was too ambitious and confusing.
+This is a terminal-based checklist application designed to help users organize their tasks and subjects efficiently.
 
 ## Project Structure
 
