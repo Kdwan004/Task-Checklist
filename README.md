@@ -1,52 +1,74 @@
 # Task-Checklist
-A second attempt at making a checklist, was too ambitous with my last
-attempt and got lost on the way. My code became confusing and I became overwhelmed by what I had done. 
 
-Project Plan: main.py <-- subject.py <-- tasks.py
+This is a terminal-based checklist application designed to help users organize their tasks and subjects efficiently. This is a second attempt at making a checklist application after realizing the initial version was too ambitious and confusing.
 
+## Project Structure
 
-Main Menu:
+The project is organized into three main components:
 
-- Create Subject [DONE]
-	- List Subjects [System] 
-	- Input Subject Name [User] 
-		- Confirm Subject [User]
-		- Cancle Subject (Return to main menu) [User]
+- `main.py` - The main entry point of the application.
+- `subject.py` - Handles the subject-related functionalities.
+- `tasks.py` - Manages the tasks within each subject.
 
-- Edit Subject (Add, Remove options) [DONE]
-	- List Subjects (Select by index numebr) [System]
-		- List Task Options [System]
-			- ADD [System]
-				- List tasks in subject [System]
-				- Input task name [User]
-				- Add task to the list [System]
-				- Display updated task list [System]
+## Features
 
-				- Back (Return to main menu) [User]
+### Main Menu
 
-			- REMOVE [System]
-				- List tasks in subject [System]
-				- Input task name [User]
-				- Confirm 'Are you sure you want to remove 'task?''[User]
-				- Remove task from list [User]
-				- Display updated task list [System]
-			
-				- Back (Return to main menu) [User]
-			
-- Remove Subject [DONE]
-	- List Subjects (Select by index number) [System]
-		- Confirm Selected Subject 'Are you sure you want to remove 'Subject'' [User]
-		- Cancle (Return to main menu) [User]
+- **Create Subject**: 
+  - Lists existing subjects.
+  - Prompts user to input a new subject name.
+  - Confirms or cancels the creation of the new subject.
 
-- Check/Uncheck Task [DONE]
-	- List Subject/Tasks Name/Index [System]
-		- Select Subject & Task Index [Toggle Checkmark] [User]
-		- Display updated list with checked task [System]
-		- Return to main menu [System]
- 
-- Exit [DONE]
-	- Exit Program [User]
+- **Edit Subject**:
+  - Lists subjects for selection by index number.
+  - Provides options to add or remove tasks within the selected subject.
+    - **Add Task**:
+      - Lists tasks in the selected subject.
+      - Prompts user to input a new task name.
+      - Adds the new task to the list and displays the updated task list.
+      - Option to return to the main menu.
+    - **Remove Task**:
+      - Lists tasks in the selected subject.
+      - Prompts user to input the task name to be removed.
+      - Confirms removal and displays the updated task list.
+      - Option to return to the main menu.
 
-FILE i/o FUNCTIONS [NOT DONE]
+- **Remove Subject**:
+  - Lists subjects for selection by index number.
+  - Confirms removal of the selected subject.
+  - Option to cancel and return to the main menu.
 
-- ALL UI REQUIRMENTS COMPLETE, MUST COMPLETE FILE I/O FOR FINISHED PROJECT
+- **Check/Uncheck Task**:
+  - Lists subjects and their tasks with indices.
+  - Allows toggling of checkmarks for tasks.
+  - Displays the updated list with checked tasks.
+  - Returns to the main menu.
+
+- **Exit**:
+  - Exits the program.
+
+## Usage Instructions
+
+1. **Create a Subject**: Select the "Create Subject" option from the main menu, input the subject name, and confirm.
+2. **Edit a Subject**: Choose the "Edit Subject" option, select a subject by its index number, and choose to add or remove tasks.
+3. **Remove a Subject**: Pick the "Remove Subject" option, select a subject by its index number, and confirm the removal.
+4. **Check/Uncheck a Task**: Opt for "Check/Uncheck Task," select the subject and task by their index numbers, and toggle the checkmark.
+5. **Exit**: Select the "Exit" option to close the application.
+
+### Navigation
+
+- Use `--` to go back in the UI.
+- Enter the number next to the listed subjects or tasks to edit, check, or remove them.
+- Type the name of the task or subject when prompted to add them.
+
+## Requirements
+
+- This application currently only works in Unix environments.
+
+## To Do
+
+- Complete the file I/O functions to finalize the project.
+
+## Acknowledgements
+
+This project is a continuation of previous efforts, incorporating lessons learned to create a more manageable and user-friendly checklist application.
