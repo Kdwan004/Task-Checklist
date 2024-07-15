@@ -2,6 +2,7 @@ from subject import list_subjects
 from os import system
 from time import sleep
 from i_o import write_task
+from datetime import datetime
 
 
 # Main UI for managing tasks --> added to main menu
@@ -40,6 +41,73 @@ def task_ui(subject_list, task_list):
                 continue
 
             
+
+def get_datetime():
+    while True:
+        # Single line user input for date
+        date = input("Enter Date (DD/MM/YYYY): ")
+        if date == "--":
+            return None  # Return to the previous step
+
+        date_parts = date.split("/")
+        new_date = []
+
+        if len(date_parts) != 3:
+            print("ERROR: Invalid Input. Please enter the date in DD/MM/YYYY format.")
+            input("Press ENTER to return...")
+            continue
+        else:
+            for part in date_parts:
+                if part.isdigit():
+                    new_date.append(int(part))
+                else:
+                    print("ERROR: Invalid Input. Please enter numbers only for the date.")
+                    input("Press ENTER to return...")
+                    break
+            else:
+                day, month, year = new_date
+                break
+
+    while True:
+        # Toggle time as midnight submission
+        midnight = input("Midnight Submission? (y/n): ").lower()
+        if midnight == "--":
+            return None  # Return to the previous step
+        elif midnight == "y":
+            dt = datetime(year, month, day, 23, 59, 00)
+            return dt
+        elif midnight == "n":
+            break
+        else:
+            print("ERROR: Invalid Input. Please enter 'y' or 'n'.")
+            input("Press ENTER to return...")
+
+    while True:
+        # If time is other than midnight
+        time = input("Enter Time (HH/MM/SS): ")
+        if time == "--":
+            return None  # Return to the previous step
+
+        time_parts = time.split("/")
+        new_time = []
+
+        if len(time_parts) != 3:
+            print("ERROR: Invalid Input. Please enter the time in HH/MM/SS format.")
+            input("Press ENTER to return...")
+            continue
+        else:
+            for part in time_parts:
+                if part.isdigit():
+                    new_time.append(int(part))
+                else:
+                    print("ERROR: Invalid Input. Please enter numbers only for the time.")
+                    input("Press ENTER to return...")
+                    break
+            else:
+                hour, minute, second = new_time
+                dt = datetime(year, month, day, hour, minute, second)
+                return dt
+
 
 # View all tasks with numeric point values
 def view_all_tasks(subject_list, task_list):
@@ -104,7 +172,8 @@ def add_task(subject_list, task_list):
                         continue
                     
                     else:
-                        task_list[subject_index-1].append(f"[ ]{task}")
+                        dt = str(get_datetime())
+                        task_list[subject_index-1].append(f"[ ]{task}   "+dt)
                         write_task(task_list)
                         break
             else:
@@ -278,6 +347,7 @@ def check_task(subject_list, task_list):
 
 #task_list = [['Term Paper']]
 
+# get_datetime()
 
 # add_task(subject_list, task_list)
 # add_task(subject_list, task_list)
