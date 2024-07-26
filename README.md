@@ -49,6 +49,8 @@ The project is organized into three main components:
 
 ## Usage Instructions
 
+Create a Directory in the cloned repo called Data, and create files subjects.txt and tasks.txt to store data to files.
+
 1. **Create a Subject**: Select the "Create Subject" option from the main menu, input the subject name, and confirm.
 2. **Edit a Subject**: Choose the "Edit Subject" option, select a subject by its index number, and choose to add or remove tasks.
 3. **Remove a Subject**: Pick the "Remove Subject" option, select a subject by its index number, and confirm the removal.
